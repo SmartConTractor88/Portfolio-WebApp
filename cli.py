@@ -1,6 +1,7 @@
 import streamlit as st
+import pandas #
 
-st.set_page_config(layout="wide") # expand tu width of the layout
+st.set_page_config(layout="wide") # expand to width of the layout
 
 col1, col2 = st.columns(2) # return 2 column objects
 
@@ -8,7 +9,7 @@ with col1:
     st.image("Portfolio_Icons\\insta_profile_pic2.png", width=400)
 
 with col2:
-    st.title("Gundars Plume")
+    st.title("Gundars Plūme")
 
     content = """
     A monkey once swung through the trees with delight,
@@ -30,6 +31,25 @@ with col2:
     """
     st.write(content)
 
-
+st.info("Below you can find some of the **apps** I have built with **Python**. Feel free to contact me!")
 
 print("PORTFOLIO")
+
+
+df = pandas.read_csv("data.csv", sep=";") # read the file, add a separator
+col3, col4 = st.columns(2) # return 2 column objects
+
+with col3:
+
+    for index, row in df[0::2].iterrows():
+        # access titles from csv file
+        st.header(row["title"])
+
+
+with col4:
+
+    for index, row in df[1::2].iterrows():
+        # access titles from csv file
+        st.header(row["title"])
+
+print(df[1::2])
