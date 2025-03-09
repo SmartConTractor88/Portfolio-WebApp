@@ -37,19 +37,27 @@ print("PORTFOLIO")
 
 
 df = pandas.read_csv("data.csv", sep=";") # read the file, add a separator
-col3, col4 = st.columns(2) # return 2 column objects
+col3, empty_col, col4 = st.columns([1.5, 0.5, 1.5]) # return 2 column objects and extra space in the middle
 
 with col3:
 
     for index, row in df[0::2].iterrows():
-        # access titles from csv file
-        st.header(row["title"])
+        
+        st.header(row["title"]) # access titles from csv file
+        st.write(row["description"]) # access decriptions from the csv file
+        st.image("Portfolio_Icons/" + row["image"]) # access images from the csv file
+        st.write(f"[Source Code]({row['url']})") # "Source Code" text with an attached link from csv file
 
+#with empty_col:
+
+    
 
 with col4:
+
 
     for index, row in df[1::2].iterrows():
         # access titles from csv file
         st.header(row["title"])
-
-print(df[1::2])
+        st.write(row["description"]) # access decriptions from the csv file
+        st.image("Portfolio_Icons/" + row["image"]) # access images from the csv file
+        st.write(f"[Source Code]({row['url']})") # "Source Code" text with an attached link from csv file
